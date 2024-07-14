@@ -1,0 +1,17 @@
+.sidebar__item {
+   color: white;
+   img {
+      filter: invert(1);
+   }
+
+   &.active__link {
+      color: black;
+      background-color: white;
+
+      img {
+         filter: invert(0);
+      }
+
+   }
+   
+}
