@@ -6,11 +6,13 @@ import OverviewWallet from "@/components/dashboard/cards/OverviewWallet";
 import OverviewTradeBot from "@/components/dashboard/cards/OverviewTradeBot";
 import useCurrentWallet from "@/hooks/useCurrentWallet";
 import { useMoralis } from "react-moralis";
+import { OverviewChart } from "@/components/chart/OverviewChart";
 
 function Overview() {
-	const { userWallet } = useCurrentWallet();
+	const { userWallet, rate } = useCurrentWallet();
 	const { account } = useMoralis();
 	const truncatedAddress =` ${account?.slice(0, 6)}...${account?.slice(account?.length - 4)}`;
+	
 	return (
 		<div className="overview__page pt-8 px-8">
 			<div>
@@ -19,7 +21,7 @@ function Overview() {
 						<p className="text-sm">Current balance</p>
 						<div className="flex items-center gap-4">
 							<h1 className="font-bold text-4xl mt-2">
-								${userWallet?.bnbBalance || "78,374"}
+								${userWallet?.depositBalance?.toFixed(2) || 0}
 							</h1>
 							<p className="text-[.7rem] bg-slate-700 px-3 py-2 rounded-3xl text-green-300">
 								
@@ -32,7 +34,7 @@ function Overview() {
 									<img src="/icons/bnb.svg" alt="" />
 									BNB
 								</h2>
-								<h1 className="font-semibold text-lg">$5,670</h1>
+								<h1 className="font-semibold text-lg">${rate?.binancecoin.usd}</h1>
 							</div>
 							<Separator
 								className=" bg-gray-500"
@@ -43,7 +45,7 @@ function Overview() {
 									<img src="/icons/ethereum.svg" alt="" />
 									Ethereum
 								</h2>
-								<h1 className="font-semibold text-lg">$5,670</h1>
+								<h1 className="font-semibold text-lg">${rate?.ethereum.usd}</h1>
 							</div>
 							<Separator
 								className="bg-gray-500"
@@ -51,10 +53,10 @@ function Overview() {
 							/>
 							<div>
 								<h2 className="flex gap-1 mb-2 text-sm items-center">
-									<img src="/icons/solana.svg" alt="" />
-									Solana
+									<img className="w-5" src="/icons/bitcoin.svg" alt="" />
+									Bitcoin
 								</h2>
-								<h1 className="font-semibold text-lg">$5,670</h1>
+								<h1 className="font-semibold text-lg">${rate?.bitcoin.usd}</h1>
 							</div>
 						</div>
 					</div>
@@ -66,6 +68,7 @@ function Overview() {
 						/>
 					</div>
 				</div>
+				<OverviewChart />
 				<div className="mt-8 bg-white py-4 px-3">
 					<div className="flex justify-between item-center">
 						<h1 className="font-semibold text-gray-700">Trade History</h1>

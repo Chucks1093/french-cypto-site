@@ -1,6 +1,18 @@
 import { WalletState } from "@web3-onboard/core";
 import { create } from "zustand";
 
+export type CryptoPrices = {
+	binancecoin: {
+		usd: number;
+	};
+	bitcoin: {
+		usd: number;
+	};
+	ethereum: {
+		usd: number;
+	};
+};
+
 export type WalletDetails = {
 	address: string;
 	bnbBalance: string;
@@ -11,15 +23,20 @@ export type WalletDetails = {
 
 interface CurretUserWallet {
 	userWallet: Partial<WalletDetails> | null;
+	rate: CryptoPrices | null;
 	setUserWallet: (details: Partial<WalletDetails>) => void;
+	setRate: (newRate: CryptoPrices) => void;
 }
 
 const initialState = {
 	userWallet: null,
+	rate: null,
 };
 
 const useCurrentWallet = create<CurretUserWallet>()((set) => ({
 	...initialState,
+	setRate: (newRate) =>
+		set((state) => ({ rate: { ...state.rate, ...newRate } })),
 	setUserWallet: (details) =>
 		set((state) => ({ userWallet: { ...state.userWallet, ...details } })),
 }));

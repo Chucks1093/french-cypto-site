@@ -8,8 +8,41 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
+import usePost from "@/hooks/usePost";
+import useCurrentWallet from "@/hooks/useCurrentWallet";
+import useAppHistory from "@/hooks/useAppHistory";
+import showToast from "@/utils/showToast";
+import { useEffect } from "react";
+import { formatTimestamp } from "@/utils/utils";
 
 export default function RecentDeposits() {
+  const { postData } = usePost();
+	const { userWallet } = useCurrentWallet();
+	const { depositHistory, setDepositHistory, fetchedDepositHistory } = useAppHistory();
+
+	const fetchDeposits = async () => {
+		try {
+			if (!userWallet?.address) {
+				showToast.error("Connect Wallet Address");
+				throw new Error("Connect Wallet Address");
+			}
+			const data = await postData(
+				"/deposit_history",
+				JSON.stringify({
+					wallet_address: userWallet?.address,
+				})
+			);
+			setDepositHistory(data)
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
+	useEffect(() => {
+    if(!fetchedDepositHistory) {
+      fetchDeposits();
+    }
+	}, [fetchDeposits]);
   return (
         <Table className="mt-4">
           <TableHeader>
@@ -20,46 +53,21 @@ export default function RecentDeposits() {
             </TableRow>
           </TableHeader>
           <TableBody>
+            {depositHistory?.map((history, index)=> {
+              const { date, time } = formatTimestamp(history.timestamp);
+              return index < 5 && (
             <TableRow className="bg-accent">
-              
-              <TableCell className="hidden sm:table-cell">2024-06-13 16:42</TableCell>
-              <TableCell className="hidden sm:table-cell">100.00</TableCell>
+              <TableCell className="hidden sm:table-cell">{date} {time}</TableCell>
+              <TableCell className="hidden sm:table-cell">{history.amount}</TableCell>
               <TableCell className="hidden sm:table-cell">
                 <Badge className="text-xs text-green-600" variant="secondary">
-                Confirmed
+                {history.status}
                 </Badge>
               </TableCell>
             </TableRow>
-            <TableRow className="bg-accent">
-              
-              <TableCell className="hidden sm:table-cell">2024-06-13 16:42</TableCell>
-              <TableCell className="hidden sm:table-cell">100.00</TableCell>
-              <TableCell className="hidden sm:table-cell">
-                <Badge className="text-xs text-green-600" variant="secondary">
-                Confirmed
-                </Badge>
-              </TableCell>
-            </TableRow>
-            <TableRow className="bg-accent">
-              
-              <TableCell className="hidden sm:table-cell">2024-06-13 16:42</TableCell>
-              <TableCell className="hidden sm:table-cell">100.00</TableCell>
-              <TableCell className="hidden sm:table-cell">
-                <Badge className="text-xs text-yellow-600" variant="secondary">
-                Pending
-                </Badge>
-              </TableCell>
-            </TableRow>
-            <TableRow className="bg-accent">
-              
-              <TableCell className="hidden sm:table-cell">2024-06-13 16:42</TableCell>
-              <TableCell className="hidden sm:table-cell">100.00</TableCell>
-              <TableCell className="hidden sm:table-cell">
-                <Badge className="text-xs text-red-600" variant="secondary">
-                Failed
-                </Badge>
-              </TableCell>
-            </TableRow>
+
+            )})}
+          
           </TableBody>
         </Table>
   )

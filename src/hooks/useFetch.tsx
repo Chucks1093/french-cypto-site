@@ -7,7 +7,7 @@ const useFetch = () => {
 	const fetchData = async (url: `/${string}`) => {
 		setLoading(true);
 		try {
-			const usertoken = Cookies.get("user-token");
+			const usertoken = Cookies.get("french-token");
 			const resp = await fetch(`${import.meta.env.VITE_BASE_URL}${url}`, {
 				method: "GET",
 				headers: {

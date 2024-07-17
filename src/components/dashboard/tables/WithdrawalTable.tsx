@@ -7,7 +7,8 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
-import { Fragment } from "react/jsx-runtime"
+import { Fragment } from "react/jsx-runtime";
+
 
 export default function WithdrawalTable() {
 

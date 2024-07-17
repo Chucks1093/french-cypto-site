@@ -8,7 +8,7 @@ import useCurrentUser from "@/hooks/useCurrentUser";
 import Loader from "@/components/loader/linear-loader/Loader";
 
 function DashboardLayout() {
-	const token = Cookies.get("coinswag-token");
+	const token = Cookies.get("french-token");
 	const [isLoading, setIsLoading] = useState(false);
 
 	//   const isAuthenticated = token !== undefined;
