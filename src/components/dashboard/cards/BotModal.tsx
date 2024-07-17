@@ -72,7 +72,7 @@ function BotModal(props: BotModalProps) {
 	const handleDateChange = (value: Date) => {
 		setBotDetails({
 			...botDetails,
-			runtime: removeMillisecondsFromISOString(value.toISOString()),
+			runtime: value.toISOString(),
 		});
 	};
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
