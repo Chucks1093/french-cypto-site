@@ -13,9 +13,7 @@ import useCurrentWallet from "@/hooks/useCurrentWallet";
 import usePost from "@/hooks/usePost";
 import Loader from "@/components/loader/circle-loader/Loader";
 import { useMoralis } from "react-moralis";
-import {
-	removeMillisecondsFromISOString,
-} from "@/utils/utils";
+
 import useTradeGrids from "@/hooks/useTradeGrid";
 import useAppHistory from "@/hooks/useAppHistory";
 
