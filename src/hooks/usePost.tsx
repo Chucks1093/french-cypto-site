@@ -7,8 +7,7 @@ const usePost = () => {
   const postData = async (url: `/${string}`, body: any) => {
     setLoading(true);
     try {
-      const usertoken = Cookies.get("user-token");
-      console.log(`${import.meta.env.VITE_BASE_URL}${url}`)
+      const usertoken = Cookies.get("french-token");
       const resp = await fetch(`${import.meta.env.VITE_BASE_URL}${url}`, {
         method: "POST",
         headers: {

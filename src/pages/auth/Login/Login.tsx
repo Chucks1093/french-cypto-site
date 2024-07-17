@@ -22,7 +22,12 @@ export default function LogIn() {
 		try {
 			const data = (await postData("/login", requestBody)) as {token: string};
 			console.log(data);
-			Cookies.set("user-token", data.token);
+			Cookies.set("french-token", data.token, {
+				expires: 27, // 7 days
+				path: '/',
+				secure: true,
+				sameSite: 'strict'
+		  });
 			showToast.success("Welcome back")
 			navigate("/dashboard")
 		} catch (error) {

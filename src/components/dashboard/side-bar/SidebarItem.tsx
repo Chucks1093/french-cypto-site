@@ -10,7 +10,6 @@ export type SideItemProps = {
 
 const SidebarItem = ({ icon, title, link, handleClick }: SideItemProps) => {
 	const location = useLocation();
-	console.log(location.pathname, link)
 
 
 	return (

@@ -1,9 +1,11 @@
 import { useMoralis } from "react-moralis";
 import { useEffect, useState } from "react";
-import Web3 from "web3";
+// import Web3 from "web3";
 import useCurrentWallet from "@/hooks/useCurrentWallet";
-import contractABI from "@/utils/contractABI";
-import { contractAddress } from "@/utils/constants";
+// import contractABI from "@/utils/contractABI";
+// import { contractAddress } from "@/utils/constants";
+import usePost from "@/hooks/usePost";
+import showToast from "@/utils/showToast";
 
 export default function ConnectButton() {
 	const {
@@ -14,6 +16,7 @@ export default function ConnectButton() {
 		deactivateWeb3,
 		chainId,
 	} = useMoralis();
+	// const account = "0x987654321fedcba1"
 
 	const [_, setShowMessage] = useState(false);
 	// const [preferredChainId, setPreferredChainId] = useState("0x57");
@@ -21,18 +24,15 @@ export default function ConnectButton() {
 	// const [depositAmount, setDepositAmount] = useState("");
 	// const [userBalance, setUserBalance] = useState<string | number>(0);
 	const { setUserWallet } = useCurrentWallet();
+	const { postData } = usePost();
 
-
-	
-
-	const web3 = new Web3(Moralis.provider as string);
-	const contract = new web3.eth.Contract(contractABI, contractAddress);
+	// const web3 = new Web3(Moralis.provider as string);
+	// const contract = new web3.eth.Contract(contractABI, contractAddress);
 
 	const handleConnectClick = async () => {
 		setIsConnecting(true);
 		await enableWeb3();
 		window.localStorage.setItem("connected", "injected");
-		setIsConnecting(false);
 	};
 
 	useEffect(() => {
@@ -91,19 +91,29 @@ export default function ConnectButton() {
 	// 	}
 	// };
 
-
-
 	const fetchUserBalance = async () => {
 		try {
-			const balance = (await contract.methods
-				.getUserDepositBalance()
-				.call({ from: account! })) as number;
+			const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+			console.log(accounts)
+			console.log("address", account);
+			const data = await postData(
+				"/get-paper-balance",
+				JSON.stringify({
+					wallet_address: account,
+				})
+			);
+			console.log(data);
+
 			setUserWallet({ address: account! });
 			setUserWallet({
-				bnbBalance: web3?.utils?.fromWei(balance, "ether"),
+				depositBalance: data.paper_balance,
 			});
 		} catch (error) {
+			setUserWallet({ address: account!, depositBalance: 0 });
 			console.error("Error fetching user balance:", error);
+			showToast.error("Please fund your account");
+		} finally {
+			setIsConnecting(false);
 		}
 	};
 
@@ -118,7 +128,7 @@ export default function ConnectButton() {
 			{!account && (
 				<div>
 					<button
-               className="bg-app-primary text-white font-semibold w-full mt-4 rounded-3xl text-sm py-3"
+						className="bg-app-primary text-white font-semibold w-full mt-4 rounded-3xl text-sm py-3"
 						onClick={handleConnectClick}
 						disabled={isWeb3Enabled || isConnecting}
 					>
@@ -127,7 +137,8 @@ export default function ConnectButton() {
 				</div>
 			)}
 
-			{account && (
+
+			{account && !isConnecting && (
 				<div className="text-center text-gray-400 text-sm mt-5">
 					Connected to {account?.slice(0, 6)}...
 					{account?.slice(account?.length - 4)}
@@ -143,7 +154,7 @@ export default function ConnectButton() {
 					<div>Your Deposit Balance: {userBalance} BNB</div> */}
 				</div>
 			)}
-{/* 
+			{/* 
 			{showMessage &&
 				(chainId === "0x61" ? (
 					<div>

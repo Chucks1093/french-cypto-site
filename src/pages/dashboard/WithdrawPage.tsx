@@ -1,13 +1,19 @@
 import { SelectCoin } from "@/components/dashboard/cards/OverviewWallet";
-import RecentDeposits from "@/components/dashboard/tables/RecentDeposits";
 import { Button } from "@/components/ui/button";
 import useCurrentWallet from "@/hooks/useCurrentWallet";
 import { contractAddress } from "@/utils/constants";
 import { copyTextToClipboard } from "@/utils/utils";
+import {
+	Table,
+	TableBody,
+	TableHead,
+	TableHeader,
+	TableRow,
+} from "@/components/ui/table";
 
 function WithdrawPage() {
-	const {userWallet} = useCurrentWallet();
-	
+	const { userWallet } = useCurrentWallet();
+
 	return (
 		<div className="deposit__page p-8">
 			<div>
@@ -41,7 +47,7 @@ function WithdrawPage() {
 					<p className="font-bold text-sm text-gray-600 ">
 						{contractAddress}
 					</p>
-					<button className="bg-app-primary flex items-center justify-center font-semibold gap-2 text-white px-4 py-1 rounded-2xl" onClick={()=>copyTextToClipboard(contractAddress)}>
+					<button className="bg-app-primary flex items-center justify-center font-semibold gap-2 text-white px-4 py-1 rounded-2xl" onClick={() => copyTextToClipboard(contractAddress)}>
 						copy <img src="/icons/copy.svg" alt="" />
 					</button>
 				</div>
@@ -121,7 +127,7 @@ function WithdrawPage() {
 				</div>
 				<div className="mt-10">
 					<h1 className="pb-4 border-b border-b-gray-400 text-xl flex justify-between items-center">
-						Recent Deposits
+						Recent Withdrawal
 						<Button
 							className="rounded-3xl text-sm px-6 bg-app-primary text-white font-bold py-[.4rem] h-fit"
 							variant="outline"
@@ -129,7 +135,22 @@ function WithdrawPage() {
 							View more
 						</Button>
 					</h1>
-					<RecentDeposits />
+					<Table className="mt-4">
+						<TableHeader>
+							<TableRow className="[&>th]:text-gray-700">
+								<TableHead className="hidden sm:table-cell">Date and Time</TableHead>
+								<TableHead className="hidden sm:table-cell">Amount</TableHead>
+								<TableHead className="hidden sm:table-cell">Status</TableHead>
+							</TableRow>
+						</TableHeader>
+						<TableBody>
+						</TableBody>
+					</Table>
+					<div className="flex items-center flex-col justify-center">
+						<img className="block w-[10rem]" src="/images/no-record.gif" alt="" />
+						<p className="text-sm text-center relative bottom-5 text-gray-600">No Record</p>
+
+					</div>
 				</div>
 			</div>
 		</div>

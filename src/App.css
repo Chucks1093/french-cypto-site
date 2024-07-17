@@ -1,7 +1,47 @@
 * {
-   margin:  0;
-   padding: 0;
-   box-sizing: border-box;
-   font-family: "Inter";
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: "Inter";
+	&::-webkit-scrollbar {
+		width: 0.7rem;
+		background-color: transparent;
+		transform: translateX(-100%);
+
+		&:hover {
+			background-color: white;
+		}
+	}
+	&::-webkit-scrollbar-thumb {
+		background-color: #818b99;
+		border: 3px solid transparent;
+		border-radius: 3rem;
+		background-clip: content-box;
+	}
+	&::-webkit-scrollbar-button {
+		height: 1rem;
+	}
 }
 
+.hero__text {
+	background: linear-gradient(#ffffff, #999999);
+	background-clip: text;
+	-webkit-background-clip: text;
+	color: transparent;
+	letter-spacing: -0.1rem;
+}
+
+.top__text {
+	background: #5a5a5a2c;
+   padding: .2rem  2rem;
+   backdrop-filter: blur(5px);
+   font-size: .8rem;
+   border-radius: 1.2rem;
+   border: 1px solid #6363638e;
+}
+
+@media screen and (max-width: 900px) {
+   .top__text {
+      font-size: .6rem;
+   }
+}

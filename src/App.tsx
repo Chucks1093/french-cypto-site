@@ -14,6 +14,7 @@ import HistoryPage from "./pages/dashboard/HistoryPage";
 import WithdrawPage from "./pages/dashboard/WithdrawPage";
 // import OnchainProviders from "./providers/OnchainProviders";
 import { MoralisProvider } from "react-moralis";
+import { useEffect } from "react";
 
 const router = createBrowserRouter([
 	{ path: "/", element: <Home /> },
@@ -54,6 +55,12 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
+	useEffect(() => {
+		const userLanguage = navigator.language;
+		if (!userLanguage.startsWith('fr')) {
+		  document.documentElement.lang = 'fr';
+		}
+	 }, []);
 	return (
 		<div className="">
 			<MoralisProvider initializeOnMount={false}>

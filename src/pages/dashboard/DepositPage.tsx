@@ -19,7 +19,7 @@ function DepositPage() {
 	const contract = new web3.eth.Contract(contractABI, contractAddress);
 
 	const handleDeposit = async () => {
-		const token = Cookies.get("token"); // Assuming JWT is stored in localStorage
+		const token = Cookies.get("french-token"); // Assuming JWT is stored in localStorage
 		const currentDateTime = new Date().toISOString(); // Get the current date and time
 		const userAddress = account;
 		showToast.loading("Making Deposit")
@@ -48,11 +48,11 @@ function DepositPage() {
 					},
 					body: JSON.stringify({
 						date: currentDateTime,
-						amount: depositAmount.toFixed(2),
+						amount: depositAmount,
 						status: "Successful",
 						contractAddress,
 						transactionHash,
-						walletAddress: userAddress,
+						wallet_address: userAddress,
 					}),
 				}
 			);
@@ -141,7 +141,7 @@ function DepositPage() {
 
 				<p className="text-gray-400 mt-6 mb-6">
 					Available Balance:{" "}
-					{`${userWallet?.bnbBalance || (0.0).toFixed(2)} BNB`}
+					{`$${userWallet?.depositBalance || (0.0).toFixed(2)}`}
 				</p>
 
 				<div className="flex justify-between items-center border  border-gray-300 bg-white h-12 rounded-xl overflow-hidden">
