@@ -4,7 +4,7 @@ import TestimonialImg from "./TestimonialImg";
 
 export default function Testimonial() {
   return (
-    <div className=" max-w-[1140px] md:mx-auto text-center">
+    <div className=" max-w-[1140px] md:mx-auto text-center" id="testimonial">
       <Intro contentIntro="What Our Customers Say" />
 
       <div className=" ">

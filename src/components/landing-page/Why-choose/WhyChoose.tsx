@@ -3,7 +3,7 @@ import WhyChooseCard from "./WhyChooseCard";
 
 export default function WhyChoose() {
   return (
-    <div className=" max-w-[1140px] mx-auto p-5 ">
+    <div className=" max-w-[1140px] mx-auto p-5 " id="about">
       <Intro contentIntro="Supercharged AI" />
 
       <div className=" flex flex-col items-center mx-auto">

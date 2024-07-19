@@ -1,5 +1,4 @@
 import { useState } from "react";
-import Buttons from "@/lib/util/Button";
 import { Link, useNavigate } from "react-router-dom";
 import usePost from "@/hooks/usePost";
 import Loader from "@/components/loader/circle-loader/Loader";
@@ -111,15 +110,15 @@ export default function LogIn() {
 					</form>
 
 					<div className=" flex flex-row items-center gap-3 justify-center mt-4">
-						<img src="/icons/google.svg" alt="Google img" />
-						<span>Login with google</span>
+						{/* <img src="/icons/google.svg" alt="Google img" />
+						<span>Login with google</span> */}
 					</div>
 
 					<div>
-						<Buttons
+	{/* 					<Buttons
 							label="Login with apple "
 							className=" bg-[#1E1E1E] py-2 text-white rounded-full w-full mt-5 transition"
-						/>
+						/> */}
 					</div>
 
 					<div className=" items-center mt-5 flex flex-row justify-center">

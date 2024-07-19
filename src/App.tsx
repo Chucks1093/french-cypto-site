@@ -57,8 +57,11 @@ const router = createBrowserRouter([
 function App() {
 	useEffect(() => {
 		const userLanguage = navigator.language;
-		if (!userLanguage.startsWith('fr')) {
-		  document.documentElement.lang = 'fr';
+		console.log(userLanguage)
+		if (!userLanguage.startsWith('french')) {
+			const htmlpage = document.querySelector("html")!;
+			console.log(htmlpage)
+			htmlpage!.lang = "french"
 		}
 	 }, []);
 	return (
