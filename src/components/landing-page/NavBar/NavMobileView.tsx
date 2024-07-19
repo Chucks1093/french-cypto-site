@@ -6,19 +6,19 @@ export default function NavMobileView({ visible }: any) {
       <div className="text-center w-full ">
         <ul className=" flex md:hidden  flex-col lg:gap-7 gap-3 ">
           <li>
-            <Link to="/" className={` `}>
+            <a href="#home" className={` `}>
               Home
-            </Link>
+            </a>
           </li>
           <li>
-            <Link to="/#" className={``}>
+            <a href="#about" className={``}>
               About us
-            </Link>
+            </a>
           </li>
           <li>
-            <Link to="/#" className={``}>
-              Contact
-            </Link>
+            <a href="#testimonial" className={``}>
+              Testimonial
+            </a>
           </li>
 
           <li>

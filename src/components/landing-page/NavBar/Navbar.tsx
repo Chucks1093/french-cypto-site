@@ -10,22 +10,22 @@ function Navbar() {
 	};
 
 	return (
-		<nav className=" text-white w-full bg-[#0f1426] flex flex-col px-4 lg:px-10 md:px-5 py-5  sticky top-0 mx-auto z-50">
+		<nav className=" text-white w-full bg-[#0f1426] flex flex-col px-4 lg:px-10 md:px-5 py-5  sticky top-0 mx-auto z-50 ">
 			<div className="  flex flex-row justify-between  max-w-[1240px] ">
 				<Link to={"/"}>
 					<img src="/icons/Logo.svg" alt="logo " />
 				</Link>
 
 				<div>
-					<ul className=" md:flex hidden md:flex-row lg:gap-7 gap-3 font-[500] text-[14px] justify-center items-center">
+					<ul className=" md:flex hidden md:flex-row lg:gap-7 gap-3 font-[500] text-[14px] justify-center items-center ">
 						<li>
-							<Link to={"/"}>Home</Link>
+							<a href="#home">Home</a>
 						</li>
 						<li>
-							<Link to={"/#"}>About</Link>
+							<a href={"#about"}>About</a>
 						</li>
 						<li>
-							<Link to={"/#"}>Contact</Link>
+							<a href={"#testimonial"}>Testimonial</a>
 						</li>
 						<li>
 							<NavButton />
