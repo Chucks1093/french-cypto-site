@@ -8,7 +8,7 @@ import contractABI from "@/utils/contractABI";
 import Web3 from "web3";
 import { contractAddress } from "@/utils/constants";
 import showToast from "@/utils/showToast";
-import { copyTextToClipboard } from "@/utils/utils";
+import { abbreviateAddress, copyTextToClipboard } from "@/utils/utils";
 import Cookies from "js-cookie";
 
 function DepositPage() {
@@ -116,7 +116,7 @@ function DepositPage() {
 		}
 	};
 	return (
-		<div className="deposit__page p-8">
+		<div className="deposit__page p-4 md:-8">
 			<div>
 				<h1 className="flex gap-2 items-center text-lg mb-4">
 					Deposits
@@ -164,8 +164,8 @@ function DepositPage() {
 
 				<p className="text-sm text-gray-800 mt-12">Address</p>
 				<div className="flex justify-between items-center bg-white order-gray-300 px-4 py-4 rounded-xl border  border-gray-30 mt-3">
-					<p className="font-bold text-sm text-gray-600 ">
-						{contractAddress}
+					<p className="font-bold text-sm  text-gray-600 ">
+						{abbreviateAddress(contractAddress)}
 					</p>
 					<button
 						className="bg-app-primary flex items-center justify-center font-semibold gap-2 text-white px-4 py-1 rounded-2xl"
@@ -212,7 +212,7 @@ function DepositPage() {
 					</div>
 				</div>
 			</div>
-			<div className="px-8">
+			<div className="px-3 md:px-8">
 				<h1 className="pb-4 border-b border-b-gray-400 text-xl">
 					Deposit Network
 				</h1>

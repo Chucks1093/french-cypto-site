@@ -61,8 +61,8 @@ function DashboardLayout() {
 			<div className="dashboard__layout">
 				<TopNav />
 				<Sidebar />
-				<div className="outlet">
-					<Outlet />
+					<div className="outlet">
+						<Outlet />
 				</div>
 			</div>
 		);

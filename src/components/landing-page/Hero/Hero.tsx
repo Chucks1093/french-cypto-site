@@ -16,7 +16,7 @@ export default function Hero() {
           Unlock Your Financial <br /> Future with AI-Powered <br /> Trading
         </h1>
 
-        <p className=" text-center text-[.8rem] md:text-[17px] text-gray-400">
+        <p className=" text-center text-[.6rem] md:text-[17px] text-gray-400">
           Utilize advanced AI to optimize your trading. Analyze trends, <br />execute 
           smart trades, and maximize returns.
         </p>

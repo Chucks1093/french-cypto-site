@@ -48,12 +48,12 @@ export default function TradeTable() {
       <Table className="mt-4">
         <TableHeader>
           <TableRow className="[&>th]:text-gray-700">
-            <TableHead className="hidden sm:table-cell">Date </TableHead>
+            <TableHead className=" sm:table-cell">Date </TableHead>
             <TableHead className="hidden sm:table-cell">Time</TableHead>
             <TableHead className="hidden sm:table-cell">Pairs</TableHead>
-            <TableHead className="hidden sm:table-cell">Type</TableHead>
+            <TableHead className=" sm:table-cell">Type</TableHead>
             <TableHead className="hidden sm:table-cell">Quantity</TableHead>
-            <TableHead className="hidden md:table-cell">Fee</TableHead>
+            <TableHead className=" md:table-cell">Fee</TableHead>
             <TableHead className="text-right">At Price</TableHead>
           </TableRow>
         </TableHeader>
@@ -63,15 +63,15 @@ export default function TradeTable() {
             return (
               <TableRow key={index} className="bg-accent">
 
-                <TableCell className="hidden sm:table-cell">{date} </TableCell>
+                <TableCell className=" sm:table-cell">{date} </TableCell>
                 <TableCell className="hidden sm:table-cell">{time}</TableCell>
                 <TableCell className="hidden sm:table-cell">{history.symbol}</TableCell>
-                <TableCell className="hidden sm:table-cell">
+                <TableCell className=" sm:table-cell">
                   <Badge className="text-xs text-green-600" variant="secondary">
                     {history.type}
                   </Badge>
                 </TableCell>
-                <TableCell className="hidden md:table-cell">{history.amount} BNB</TableCell>
+                <TableCell className=" md:table-cell">{history.amount} BNB</TableCell>
                 <TableCell className="text-right">${history.price}</TableCell>
               </TableRow>
             )

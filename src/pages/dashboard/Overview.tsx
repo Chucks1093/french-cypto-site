@@ -14,7 +14,7 @@ function Overview() {
 	const truncatedAddress =` ${account?.slice(0, 6)}...${account?.slice(account?.length - 4)}`;
 	
 	return (
-		<div className="overview__page pt-8 px-8">
+		<div className="overview__page pt-8 px-3 md:px-8">
 			<div>
 				<div className="overview__details flex rounded-xl text-white justify-between px-6 items-center">
 					<div className="py-6">
@@ -28,16 +28,16 @@ function Overview() {
 								{account? truncatedAddress : "..."}
 							</p>
 						</div>
-						<div className="flex items-center gap-12 mt-8 h-[4rem]">
+						<div className="flex items-center gap-10 md:gap-12 mt-8 h-[4rem]">
 							<div>
 								<h2 className="flex gap-1 mb-2 text-sm items-center">
 									<img src="/icons/bnb.svg" alt="" />
 									BNB
 								</h2>
-								<h1 className="font-semibold text-lg">${rate?.binancecoin.usd}</h1>
+								<h1 className="font-semibold md:text-lg text-[.8rem]">${rate?.binancecoin.usd}</h1>
 							</div>
 							<Separator
-								className=" bg-gray-500"
+								className="bg-gray-500 md:block hidden"
 								orientation="vertical"
 							/>
 							<div>
@@ -45,10 +45,10 @@ function Overview() {
 									<img src="/icons/ethereum.svg" alt="" />
 									Ethereum
 								</h2>
-								<h1 className="font-semibold text-lg">${rate?.ethereum.usd}</h1>
+								<h1 className="font-semibold md:text-lg text-[.8rem]">${rate?.ethereum.usd}</h1>
 							</div>
 							<Separator
-								className="bg-gray-500"
+								className="bg-gray-500 md:block hidden"
 								orientation="vertical"
 							/>
 							<div>
@@ -56,11 +56,11 @@ function Overview() {
 									<img className="w-5" src="/icons/bitcoin.svg" alt="" />
 									Bitcoin
 								</h2>
-								<h1 className="font-semibold text-lg">${rate?.bitcoin.usd}</h1>
+								<h1 className="font-semibold md:text-lg text-[.8rem]">${rate?.bitcoin.usd}</h1>
 							</div>
 						</div>
 					</div>
-					<div className="w-[14rem]">
+					<div className="w-[14rem] hidden md:block">
 						<img
 							className="block w-[190%] object-contain"
 							src="/images/safe-lock.gif"

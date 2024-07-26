@@ -2,7 +2,7 @@ import { SelectCoin } from "@/components/dashboard/cards/OverviewWallet";
 import { Button } from "@/components/ui/button";
 import useCurrentWallet from "@/hooks/useCurrentWallet";
 import { contractAddress } from "@/utils/constants";
-import { copyTextToClipboard } from "@/utils/utils";
+import { abbreviateAddress, copyTextToClipboard } from "@/utils/utils";
 import {
 	Table,
 	TableBody,
@@ -15,7 +15,7 @@ function WithdrawPage() {
 	const { userWallet } = useCurrentWallet();
 
 	return (
-		<div className="deposit__page p-8">
+		<div className="deposit__page md:p-8 p-4">
 			<div>
 				<h1 className="flex gap-2 items-center text-lg mb-4">
 					Withdraw
@@ -45,7 +45,7 @@ function WithdrawPage() {
 				<p className="text-sm text-gray-800 mt-12">Address</p>
 				<div className="flex justify-between items-center bg-white order-gray-300 px-4 py-4 rounded-xl border  border-gray-30 mt-3">
 					<p className="font-bold text-sm text-gray-600 ">
-						{contractAddress}
+						{abbreviateAddress(contractAddress)}
 					</p>
 					<button className="bg-app-primary flex items-center justify-center font-semibold gap-2 text-white px-4 py-1 rounded-2xl" onClick={() => copyTextToClipboard(contractAddress)}>
 						copy <img src="/icons/copy.svg" alt="" />
@@ -88,7 +88,7 @@ function WithdrawPage() {
 					</div>
 				</div>
 			</div>
-			<div className="px-8">
+			<div className="px-3 md:px-8">
 				<h1 className="pb-4 border-b border-b-gray-400 text-xl">
 					Withdraw Network
 				</h1>
@@ -97,19 +97,13 @@ function WithdrawPage() {
 						className="rounded-3xl text-sm px-6 bg-app-primary text-white font-bold py-[.4rem] h-fit"
 						variant="outline"
 					>
-						SOL
+						BNB
 					</Button>
 					<Button
 						className="rounded-3xl text-sm px-6 text-gray-600 py-[.4rem] h-fit"
 						variant="outline"
 					>
-						BEP2
-					</Button>
-					<Button
-						className="rounded-3xl text-sm px-6 text-gray-600 py-[.4rem] h-fit"
-						variant="outline"
-					>
-						BEP 20 (BSC)
+						BEP20
 					</Button>
 				</div>
 				<div className="flex gap-2 items-center">
