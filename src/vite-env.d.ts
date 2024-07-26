@@ -16,3 +16,11 @@ declare module "ethers" {
 		constructor(ethereum: Window["ethereum"], network?: ethers.Networkish);
 	}
 }
+
+declare namespace google {
+  namespace translate {
+    class TranslateElement {
+      constructor(options: {pageLanguage: string}, elementId: string);
+    }
+  }
+}

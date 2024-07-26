@@ -23,8 +23,8 @@ function HistoryPage() {
       return <TradeTable />
    }
 	return (
-		<div className="p-8">
-			<div className="flex gap-3 mt-4 mb-4 ">
+		<div className="p-3 md:-p-8">
+			<div className="flex gap-2 md:gap-3 mt-4 mb-4 ">
 				<Button
 					className={`rounded-3xl text-sm px-6 text-gray-600  py-[.4rem] h-fit ${currentPage === "trade" && "bg-app-primary text-white font-bold"}`}
 					variant="outline"

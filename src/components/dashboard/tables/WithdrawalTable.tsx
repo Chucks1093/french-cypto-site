@@ -18,7 +18,7 @@ export default function WithdrawalTable() {
         <Table className="mt-4">
           <TableHeader>
             <TableRow className="[&>th]:text-gray-700">
-              <TableHead className="hidden sm:table-cell">Refrence Number </TableHead>
+              <TableHead className=" sm:table-cell">Refrence Number </TableHead>
               <TableHead className="hidden sm:table-cell">Date</TableHead>
               <TableHead className="hidden sm:table-cell">Time</TableHead>
               <TableHead className="hidden sm:table-cell">Amount</TableHead>
@@ -49,7 +49,7 @@ export default function WithdrawalTable() {
          
         </Table>
          <div className="flex items-center flex-col justify-center">
-         <img className="block w-[10rem]" src="/images/no-record.gif" alt="" />
+         <img className="block w-[8rem] md:w-[10rem] " src="/images/no-record.gif" alt="" />
          <p className="text-sm text-center relative bottom-5 text-gray-600">No Record</p>
 
          </div>

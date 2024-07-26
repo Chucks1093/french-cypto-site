@@ -57,7 +57,7 @@ function TradingBot() {
 	}, []);
 
 	return (
-		<div className="px-8 pt-8">
+		<div className="md:px-8 px-4 pt-8">
 			<div className="flex justify-between items-center mb-8">
 				<h1 className="flex gap-2 items-center text-lg">
 					My Bots

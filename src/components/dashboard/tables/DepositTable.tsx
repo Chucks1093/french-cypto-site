@@ -50,12 +50,12 @@ export default function DepositTable() {
 		<Table className="mt-4">
 			<TableHeader>
 				<TableRow className="[&>th]:text-gray-700">
-					<TableHead className="hidden sm:table-cell">
+					<TableHead className=" sm:table-cell">
 						Transaction Hash{" "}
 					</TableHead>
 					<TableHead className="hidden sm:table-cell">Date</TableHead>
 					<TableHead className="hidden sm:table-cell">Time</TableHead>
-					<TableHead className="hidden sm:table-cell">Amount</TableHead>
+					<TableHead className=" sm:table-cell">Amount</TableHead>
 					<TableHead className="hidden sm:table-cell">Currency</TableHead>
 					<TableHead className="">Status</TableHead>
 				</TableRow>
@@ -65,7 +65,7 @@ export default function DepositTable() {
           const { date, time } = formatTimestamp(history.timestamp);
 					return (
 						<TableRow className="bg-accent" key={index}>
-							<TableCell className="hidden sm:table-cell">
+							<TableCell className=" sm:table-cell">
 								{abbreviateAddress(history.transaction_hash)}
 							</TableCell>
 							<TableCell className="hidden sm:table-cell">
@@ -74,7 +74,7 @@ export default function DepositTable() {
 							<TableCell className="hidden sm:table-cell">
 								{time}
 							</TableCell>
-							<TableCell className="hidden sm:table-cell">
+							<TableCell className=" sm:table-cell">
               {history.amount} BNB
 							</TableCell>
 							<TableCell className="hidden sm:table-cell">BNB</TableCell>
