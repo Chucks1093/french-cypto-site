@@ -6,6 +6,7 @@ import Cookies from "js-cookie";
 import { useEffect } from "react";
 import axios from "axios";
 import useCurrentWallet, { CryptoPrices } from "@/hooks/useCurrentWallet";
+import { Link } from "react-router-dom";
 
 const sideBarData: Omit<SideItemProps, "handleClick">[] = [
 	{
@@ -33,6 +34,11 @@ const sideBarData: Omit<SideItemProps, "handleClick">[] = [
 		icon: "/icons/trade.svg",
 		title: "History",
 	},
+	{
+		link: "/",
+		icon: "/icons/home.svg",
+		title: "Main Page"
+	}
 ];
 
 function Sidebar() {
@@ -74,14 +80,14 @@ function Sidebar() {
 
 	return (
 		<aside
-			className={`bg-app-primary  flex flex-col justify-between px-6 ${
-				sideBar && "show__aside"
-			}`}
-		>
-			<div className="flex gap-2 items-center mt-4">
-				<img className="w-12" src="/images/logo.png" alt="" />
-				<p className="text-white font-semibold">FrenchCypto</p>
-			</div>
+			className={`bg-app-primary  flex flex-col justify-between px-6 ${sideBar && "show__aside"
+				}`}
+		><Link to="/">
+				<div className="flex gap-2 items-center mt-4">
+					<img className="w-12" src="/images/logo.png" alt="" />
+					<p className="text-white font-semibold">FrenchCypto</p>
+				</div>
+			</Link>
 			<div className="mb-auto mt-8">
 				<p className="text-sm text-gray-400 uppercase font-semibold mb-4">
 					Manage
@@ -100,12 +106,12 @@ function Sidebar() {
 				<p className="text-sm text-gray-400 uppercase font-semibold mb-2">
 					Prefrences
 				</p>
-				<SidebarItem
+				{/* <SidebarItem
 					link="/dashboard/settings"
 					icon="/icons/settings.svg"
 					title="Settings"
 					handleClick={handleNavLinkClick}
-				/>
+				/> */}
 				<SidebarItem
 					link="/signin"
 					icon="/icons/logout.svg"

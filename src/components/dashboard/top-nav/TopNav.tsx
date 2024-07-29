@@ -17,14 +17,14 @@ function TopNav() {
 		<nav className="  flex justify-between items-center px-8 w-full shadow-2xl">
 			<p className="font-bold">{navHeading[pathname as keyof typeof navHeading]}</p>
 			<div className="flex justify-center items-centerm gap-5">
-				<div className="bg-gray-200 rounded-2xl flex w-[14rem] h-8 px-4 gap-2 md:block hidden">
+				{/* <div className="bg-gray-200 rounded-2xl flex w-[14rem] h-8 px-4 gap-2 md:block hidden">
 					<img className="w-4" src="/icons/search.svg" alt="" />
 					<input
 						placeholder="Search..."
 						type="text"
 						className="w-full block bg-transparent placeholder:text-sm inset-4"
 					/>
-				</div>
+				</div> */}
 				<span
 					className="flex items-center justify-center bg-gray-200 p-1 rounded-full overflow-hidden'
 				"
