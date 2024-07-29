@@ -34,17 +34,6 @@ export default function Footer() {
               </Link>
             </li>
 
-            <li className=" mb-2">
-              <Link to="/#" className="text-white">
-                Our vision
-              </Link>
-            </li>
-
-            <li className=" mb-2">
-              <Link to="/#" className="text-white">
-                Our mission
-              </Link>
-            </li>
 
             <li className=" mb-2">
               <Link to="/#" className="text-white">

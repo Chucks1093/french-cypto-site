@@ -30,9 +30,17 @@ export default function ConnectButton() {
 	// const contract = new web3.eth.Contract(contractABI, contractAddress);
 
 	const handleConnectClick = async () => {
-		setIsConnecting(true);
-		await enableWeb3();
-		window.localStorage.setItem("connected", "injected");
+		try {
+
+			setIsConnecting(true);
+			await enableWeb3();
+			window.localStorage.setItem("connected", "injected");
+		}catch(error){
+			console.log(error);
+			setIsConnecting(false)
+		}finally {
+			setIsConnecting(false)
+		}
 	};
 
 	useEffect(() => {

@@ -39,9 +39,9 @@ export default function HowItWorks() {
             Icon="/icons/ActivateBot.svg"
           />
           <WorksCard
-            CardTitle="Step 1: Withdraw"
+            CardTitle="Step 4: Withdraw"
             CardBody="Withdraw your capital and profits to your external wallet at anytime."
-            Icon="/icons/Withdraw.svg"
+            Icon="/icons/Withdraw copy.svg"
           />
         </div>
       </div>
