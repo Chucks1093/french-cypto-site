@@ -1,6 +1,8 @@
 import NavButton from "../NavBar/NavButton";
+// import useIntersectionObserver from "@/hooks/useIntersectionObserver";
 
 export default function Hero() {
+
   return (
     <div className=" flex flex-col items-center pt-10 py-20 space-y-4 relative" id="home">
       <img className="absolute left-0 top-0 w-full" src="/icons/grid.svg" alt="" />
@@ -24,7 +26,7 @@ export default function Hero() {
         <NavButton />
       </div>
 
-      <div className=" pt-8">
+      <div className=" pt-8 z-20">
         <img src="/icons/Hero-bg.svg" alt=" Hero img" />
       </div>
     </div>

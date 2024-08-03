@@ -10,7 +10,7 @@ export default function HowItWorks() {
         <h1 className=" md:text-[48px] font-[400] text-[32px] text-center">
           How It Works
         </h1>
-        <p className="md:w-1/2 w-5/6 text-center md:text-justify">
+        <p className="md:w-1/2 w-5/6 text-justify text-[.75rem] md:text-sm mt-4 align__last text-gray-300">
           Our user-friendly interface and intuitive features ensure that even
           newcomers can quickly grasp the essentials and embark on a seamless
           journey into the world of efficient and profitable trading.

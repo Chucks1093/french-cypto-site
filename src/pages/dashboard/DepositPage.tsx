@@ -10,6 +10,7 @@ import { contractAddress } from "@/utils/constants";
 import showToast from "@/utils/showToast";
 import { abbreviateAddress, copyTextToClipboard } from "@/utils/utils";
 import Cookies from "js-cookie";
+import USDTDeposit from "../../components/ui/USDTDeposit"
 
 function DepositPage() {
 	const { account, Moralis } = useMoralis();
@@ -144,7 +145,7 @@ function DepositPage() {
 					{`$${userWallet?.depositBalance || (0.0).toFixed(2)}`}
 				</p>
 
-				<div className="flex justify-between items-center border  border-gray-300 bg-white h-12 rounded-xl overflow-hidden">
+				<div className="flex justify-between items-center border  border-gray-300 bg-white h-12 rounded-xl overflow-hidden mb-8">
 					<input
 						onChange={(e) =>
 							setDepositAmount(Number(e.currentTarget.value))
@@ -155,12 +156,13 @@ function DepositPage() {
 					/>
 					<button
 						onClick={handleDeposit}
-						className=" bg-app-primary h-full flex justify-center items-center text-white px-7 gap-3 text-sm"
+						className=" bg-app-primary h-full flex justify-center items-center text-white px-7 gap-3 text-sm "
 					>
-						Deposit{" "}
+						Deposit BNB
 						<img className="invert" src="/icons/deposit.svg" alt="" />
 					</button>
 				</div>
+				<USDTDeposit />
 
 				<p className="text-sm text-gray-800 mt-12">Address</p>
 				<div className="flex justify-between items-center bg-white order-gray-300 px-4 py-4 rounded-xl border  border-gray-30 mt-3">
