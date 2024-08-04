@@ -10,7 +10,8 @@ import { contractAddress } from "@/utils/constants";
 import showToast from "@/utils/showToast";
 import { abbreviateAddress, copyTextToClipboard } from "@/utils/utils";
 import Cookies from "js-cookie";
-import USDTDeposit from "../../components/ui/USDTDeposit"
+import USDTDeposit from "../../components/ui/USDTDeposit";
+import { WalletInfo } from "@/hooks/useCurrentWallet";
 
 function DepositPage() {
 	const { account, Moralis } = useMoralis();
@@ -30,7 +31,7 @@ function DepositPage() {
 				from: account!,
 				value: web3.utils.toWei(depositAmount, "ether"),
 			});
-			
+
 
 			// Fetch the transaction receipt to get the transaction hash and fee
 			const receipt = await web3.eth.getTransactionReceipt(
@@ -49,7 +50,7 @@ function DepositPage() {
 					},
 					body: JSON.stringify({
 						date: currentDateTime,
-						amount: depositAmount,
+						amount_bnb: depositAmount,
 						status: "Successful",
 						contractAddress,
 						transactionHash,
@@ -58,8 +59,10 @@ function DepositPage() {
 				}
 			);
 
-			console.log(response)
-			
+			console.log(response);
+			const result = await response.json() as WalletInfo;
+
+
 			if (response.ok) {
 				showToast.success(`Deposited ${depositAmount} BNB`)
 				console.log("Transaction data saved successfully");
@@ -67,8 +70,12 @@ function DepositPage() {
 				showToast.error("Failed to save transaction data");
 			}
 
-			fetchUserBalance(); // Update balance after deposit
-		} catch (error:any) {
+
+
+
+
+			fetchUserBalance(result.paper_balance); // Update balance after deposit
+		} catch (error: any) {
 			console.error("Error depositing BNB:", error);
 
 			// Save transaction data to the backend as failed
@@ -102,14 +109,11 @@ function DepositPage() {
 		}
 	};
 
-	const fetchUserBalance = async () => {
+	const fetchUserBalance = async (newBalance: string) => {
 		try {
-			const balance = (await contract.methods
-				.getUserDepositBalance()
-				.call({ from: account! })) as number;
 			setUserWallet({ address: account! });
 			setUserWallet({
-				bnbBalance: web3?.utils?.fromWei(balance, "ether"),
+				bnbBalance: newBalance
 			});
 		} catch (error) {
 			showToast.error("Error fetching user balance")
@@ -162,7 +166,7 @@ function DepositPage() {
 						<img className="invert" src="/icons/deposit.svg" alt="" />
 					</button>
 				</div>
-				<USDTDeposit />
+				<USDTDeposit handleClick={fetchUserBalance} />
 
 				<p className="text-sm text-gray-800 mt-12">Address</p>
 				<div className="flex justify-between items-center bg-white order-gray-300 px-4 py-4 rounded-xl border  border-gray-30 mt-3">
