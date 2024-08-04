@@ -25,6 +25,7 @@ export default function ConnectButton() {
 	// const [userBalance, setUserBalance] = useState<string | number>(0);
 	const { setUserWallet } = useCurrentWallet();
 	const { postData } = usePost();
+	const preferredChainId ="0x38"
 
 	// const web3 = new Web3(Moralis.provider as string);
 	// const contract = new web3.eth.Contract(contractABI, contractAddress);
@@ -47,63 +48,57 @@ export default function ConnectButton() {
 		Moralis.onAccountChanged((account) => {
 			console.log(`Account changed to ${account}`);
 			if (account == null) {
+				showToast.error("Attempting to disconnect")
 				window.localStorage.removeItem("connected");
 				deactivateWeb3();
 				console.log("Null account found");
 			}
-		});
+		}); 	
 
 		console.log("Connected chainId:", chainId);
+		console.log(account)
 		if (account && chainId) {
 			const timer = setTimeout(() => {
 				setShowMessage(true);
+				switchToPreferredNetwork()
 			}, 5000);
 
 			return () => clearTimeout(timer);
 		}
+		setIsConnecting(false)
 	}, [chainId, account]);
 
-	// const switchToPreferredNetwork = async () => {
-	// 	try {
-	// 		if (!window.ethereum) {
-	// 			showToast.error(
-	// 				"No ethereum object found. Please install MetaMask."
-	// 			);
-	// 		}
-	// 		if (chainId !== preferredChainId) {
-	// 			await window?.ethereum.request({
-	// 				method: "wallet_addEthereumChain",
-	// 				params: [
-	// 					{
-	// 						chainId: "0x61",
-	// 						chainName: "Binance Smart Chain Testnet",
-	// 						nativeCurrency: {
-	// 							name: "BNB",
-	// 							symbol: "tBNB",
-	// 							decimals: 18,
-	// 						},
-	// 						rpcUrls: [
-	// 							"https://data-seed-prebsc-1-s1.binance.org:8545",
-	// 						],
-	// 						blockExplorerUrls: ["https://testnet.bscscan.com"],
-	// 					},
-	// 				],
-	// 			});
-	// 			await Moralis.switchNetwork("0x61");
-	// 			console.log(`Switched to preferred network`);
-	// 		} else {
-	// 			console.log("Already connected to the preferred network");
-	// 		}
-	// 	} catch (error) {
-	// 		console.error("Error switching network:", error);
-	// 	}
-	// };
+  const switchToPreferredNetwork = async () => {
+    try {
+      if (chainId !== preferredChainId) {
+        await window.ethereum.request({
+          method: "wallet_addEthereumChain",
+          params: [{
+            chainId: "0x38",
+            chainName: "Binance Smart Chain Mainnet",
+            nativeCurrency: {
+              name: "BNB",
+              symbol: "BNB",
+              decimals: 18,
+            },
+            rpcUrls: ["https://bsc-dataseed.binance.org/"],
+            blockExplorerUrls: ["https://bscscan.com"],
+          }],
+        });
+        
+        await Moralis.switchNetwork("0x38");
+        console.log(`Switched to preferred network`);
+      } else {
+        console.log("Already connected to the preferred network");
+      }
+    } catch (error) {
+      console.error("Error switching network:", error);
+    }
+  };
 
 	const fetchUserBalance = async () => {
 		try {
-			const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
-			console.log(accounts)
-			console.log("address", account);
+			
 			const data = await postData(
 				"/get-paper-balance",
 				JSON.stringify({

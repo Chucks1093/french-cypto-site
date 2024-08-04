@@ -13,6 +13,11 @@ export type CryptoPrices = {
 	};
 };
 
+export type WalletInfo = {
+	paper_balance: string;
+	wallet_address: `0x${string}`;
+}
+
 export type WalletDetails = {
 	address: string;
 	bnbBalance: string;
