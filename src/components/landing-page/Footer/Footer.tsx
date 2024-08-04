@@ -43,41 +43,11 @@ export default function Footer() {
           </ul>
         </div>
 
-        <div className=" flex-1">
-          <h3 className="mt-6 text-white text-[26px] font-[500]">Resources</h3>
-          <ul>
-            <li className=" mb-2">
-              <Link to="/#" className=" text-white">
-                TOS
-              </Link>
-            </li>
-
-            <li className=" mb-2 ">
-              <Link to="/#" className="text-white">
-                Privacy Policy
-              </Link>
-            </li>
-            <li className=" mb-2 ">
-              <Link to="/#" className="text-white">
-                Community
-              </Link>
-            </li>
-            <li className=" mb-2 ">
-              <Link to="/#" className="text-white">
-                FAQ
-              </Link>
-            </li>
-          </ul>
-        </div>
+        
 
         <div className="flex-1 ">
           <h3 className="mt-6 text-white text-[26px] font-[500]">Contact us</h3>
-          <div className=" flex flex-row gap-2 mb-2">
-            <i className=" pi pi-map-marker mt-2 text-white font-[500]"></i>
-            <span className="font-medium text-white">
-              4140 Parker Rd. Allentown, New Mexico 31134.
-            </span>
-          </div>
+         
           <div className=" flex flex-row gap-2 mb-2">
             <i className="pi pi-phone mt-1 text-white font-[500]"></i>
             <span className="font-medium text-white">(208) 555-0112</span>
